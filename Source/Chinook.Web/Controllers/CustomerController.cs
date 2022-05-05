@@ -35,7 +35,7 @@ namespace Chinook.Web.Controllers
         [HttpGet("{lastName}")]
         public IEnumerable<Customer> Get(string lastName)
         {
-            return chinookContext.Customers.Where(x => x.LastName == lastName);
+            return chinookContext.Customers.FromSqlRaw("Select * from customers where LastName = '" + lastName + "'");
         }
 
         [HttpGet("Delay")]
